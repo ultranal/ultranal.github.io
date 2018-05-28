@@ -56,7 +56,7 @@ sand.txt
 这段代码加上sand.txt给出来的解，实际上构成了下面的同余方程组：
 
 $$
-\begin{aligned}
+\begin{displaymath}
 (\mathbf{S}) : \quad \left{
 \begin{matrix}
     n \equiv 222 \pmod{257}\\
@@ -80,7 +80,7 @@ $$
     n \equiv 87 \pmod{367}\\
     n \equiv 4 \pmod{373}
 \end{matrix}
-\end{aligned}
+\end{displaymath}
 $$
 
 类似这样的方程组，在数论中称作一元线性**同余方程组**。著名的[**中国剩余定理**](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86)描述了该类方程有解的判定条件及其解法：
@@ -94,7 +94,7 @@ $$
 2. 记$M_i$为除$ m_i $以外所有模数的乘积，$ t_i $为$ M_i $的模逆元，则S的解符合以下公式：\
 $$
 \begin{aligned}
-x \equiv \sigma_{i_1}^{n} a_it_iM_i \pmod{M}
+x \equiv \sum_{i_1}^{n} a_it_iM_i \pmod{M}
 \end{aligned}
 $$
 
