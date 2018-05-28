@@ -18,6 +18,9 @@ tags: writeup
 
 game.py
 
+    #!/usr/bin/env python
+    # -*- encoding: utf-8 -*-
+    
     import flag
 
     flag = flag.flag
@@ -82,7 +85,7 @@ $$
 
 类似这样的方程组，在数论中称作一元线性**同余方程组**。著名的[**中国剩余定理**](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86)描述了该类方程有解的判定条件及其解法：
 
-1. 一元线性同余方程组
+* 一元线性同余方程组
 
 $$\begin{aligned}\
 (\mathbf{S}) : \quad \left\{ \begin{matrix} x \equiv a_1 \pmod {m_1} \\ x \equiv a_2 \pmod {m_2} \\ \vdots \qquad\qquad\qquad \\ x \equiv a_n \pmod {m_n} \end{matrix} \right.
@@ -91,7 +94,7 @@ $$
 
 有解，当且仅当其所有模数\\(m_1, m_2, \ldots, m_n\\)互质；
 
-2. 记\\(M_i\\)为\\(m_i\\)以外所有模数的乘积，\\(t_i\\)为\\(M_i\\)的模逆元，则S的解符合以下公式：
+* 记\\(M_i\\)为\\(m_i\\)以外所有模数的乘积，\\(t_i\\)为\\(M_i\\)的模逆元，则S的解符合以下公式：
 
 $$
 \begin{aligned}
@@ -111,14 +114,17 @@ $$
 
 求模逆元使用[扩展欧几里得算法](https://zh.wikipedia.org/wiki/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95)（欧几里得算法就是辗转相除法）来实现。
 
+    #!/usr/bin/env python
+    # -*- encoding: utf-8 -*-
+    
     def extended_eucild(a, b):
-    if b == 0:
-        return a, 1, 0
-    d, x, y = extended_eucild(b, a % b)
-    x, y = y, x - a / b * y
-    return d, x, y
+        if b == 0:
+            return a, 1, 0
+        d, x, y = extended_eucild(b, a % b)
+        x, y = y, x - a / b * y
+        return d, x, y
 
-说了这么多，本题的解法就是通过扩展欧几里得算法求解上文给定的一元线性同余方程组X：
+说了这么多，本题的解法就是通过扩展欧几里得算法求解上文给定的一元线性同余方程组S：
 
     #!/usr/bin/env python
     # -*- encoding: utf-8 -*-
