@@ -4,13 +4,12 @@ title: Aspen Blog
 # welcome_message: <a href="https://github.com/onevcat/vno-jekyll" target="_blank">Download the theme</a>
 description: chAngE
 creator: <a href="http://blog.lpnal.me">@asp3n</a>
-
 url: "http://blog.lpnal.me"
-
 permalink: /:year/:month/:title/
 
 # Format
 highlighter: rouge
+markdown: kramdown
 
 # supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
 cover_color: blue
