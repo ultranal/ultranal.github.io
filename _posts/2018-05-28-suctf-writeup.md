@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CISCN 2018 初赛 Write-up
+title: SUCTF 2018 Write-up
 date: 2018-05-28 15:28:53.000000000 +08:00
 tags: writeup
 ---
