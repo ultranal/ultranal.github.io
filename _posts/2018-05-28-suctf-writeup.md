@@ -57,8 +57,6 @@ sand.txt
 
 $$
 \begin{aligned}
-(\mathbf{S}) : \quad \left\{
-\begin{matrix}
     n \equiv 222 \pmod{257}\\
     n \equiv 203 \pmod{263}\\
     n \equiv 33 \pmod{269}\\
@@ -79,7 +77,6 @@ $$
     n \equiv 165 \pmod{359}\\
     n \equiv 87 \pmod{367}\\
     n \equiv 4 \pmod{373}
-\end{matrix} \right.
 \end{aligned}
 $$
 
