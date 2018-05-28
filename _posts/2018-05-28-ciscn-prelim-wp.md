@@ -1,7 +1,7 @@
 ---
 layout: post
 title: CISCN 2018 初赛 Write-up
-date: 2017-06-12 17:32:24.000000000 +08:00
+date: 2018-05-28 15:25:24.000000000 +08:00
 tags: writeup
 ---
 
