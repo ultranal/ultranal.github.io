@@ -9,18 +9,18 @@ tags: writeup
 2. 想交个wp从来都没资格
 
 
-## Crypto & Misc
+## Crypto
 这次SUCTF算是好好的复习了一下数论（明明本来就很简单）。
 然而为什么这么多数学公式……排个版真难
 
 ### SandGame
-数论题，使用中国剩余定理可解。
+这是一道Misc题，但由于涉及了数论知识，故写在Crypto里。
 
 game.py
 
     #!/usr/bin/env python
     # -*- encoding: utf-8 -*-
-    
+
     import flag
 
     flag = flag.flag
@@ -94,7 +94,7 @@ $$
 
 有解，当且仅当其所有模数\\(m_1, m_2, \ldots, m_n\\)互质；
 
-* 记\\(M_i\\)为\\(m_i\\)以外所有模数的乘积，\\(t_i\\)为\\(M_i\\)的模逆元，则S的解符合以下公式：
+* 记\\(M=\prod_{i=1}^{n}\\)，\\(M_i = M / m_i\\)以外所有模数的乘积，\\(t_i\\)为\\(M_i\\)的模逆元，则S的解符合以下公式：
 
 $$
 \begin{aligned}
