@@ -89,7 +89,8 @@ $$\begin{aligned}\
 \end{aligned}
 $$
 
-有解，当且仅当其所有模数\\(m_1, m_2, \ldots m_n\\)互质；
+有解，当且仅当其所有模数\\(m_1, m_2, \ldots, m_n\\)互质；
+
 2. 记\\(M_i\\)为\\(m_i\\)以外所有模数的乘积，\\(t_i\\)为\\(M_i\\)的模逆元，则S的解符合以下公式：
 
 $$
@@ -99,8 +100,11 @@ x \equiv \sum_{i_1}^{n} a_it_iM_i \pmod{M}
 $$
 
 讲到这里，就不得不提一下[模逆元](https://zh.wikipedia.org/wiki/%E6%A8%A1%E5%8F%8D%E5%85%83%E7%B4%A0)的概念：整数a在模N意义下的模逆元是指满足以下公式的整数b：
+
 $$
+\begin{aligned}
 a^{-1} \equiv b \pmod{N}
+\end{aligned}
 $$
 
 模逆元仅在a和N互质的情况下存在。换言之，在模N的意义下，**对a的除法可以通过和a的模逆元b的乘法来达成**（RSA一题的主要原理）。
