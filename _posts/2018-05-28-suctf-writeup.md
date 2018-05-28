@@ -57,25 +57,25 @@ sand.txt
 
 $$
 \begin{aligned}
-    n \equiv 222 \pmod{257}
-    n \equiv 203 \pmod{263}
-    n \equiv 33 \pmod{269}
-    n \equiv 135 \pmod{271}
-    n \equiv 203 \pmod{277}
-    n \equiv 62 \pmod{281}
-    n \equiv 227 \pmod{283}
-    n \equiv 82 \pmod{293}
-    n \equiv 239 \pmod{307}
-    n \equiv 82 \pmod{311}
-    n \equiv 11 \pmod{313}
-    n \equiv 220 \pmod{317}
-    n \equiv 74 \pmod{331}
-    n \equiv 92 \pmod{337}
-    n \equiv 8 \pmod{347}
-    n \equiv 308 \pmod{349}
-    n \equiv 195 \pmod{353}
-    n \equiv 165 \pmod{359}
-    n \equiv 87 \pmod{367}
+    n \equiv 222 \pmod{257}\\
+    n \equiv 203 \pmod{263}\\
+    n \equiv 33 \pmod{269}\\
+    n \equiv 135 \pmod{271}\\
+    n \equiv 203 \pmod{277}\\
+    n \equiv 62 \pmod{281}\\
+    n \equiv 227 \pmod{283}\\
+    n \equiv 82 \pmod{293}\\
+    n \equiv 239 \pmod{307}\\
+    n \equiv 82 \pmod{311}\\
+    n \equiv 11 \pmod{313}\\
+    n \equiv 220 \pmod{317}\\
+    n \equiv 74 \pmod{331}\\
+    n \equiv 92 \pmod{337}\\
+    n \equiv 8 \pmod{347}\\
+    n \equiv 308 \pmod{349}\\
+    n \equiv 195 \pmod{353}\\
+    n \equiv 165 \pmod{359}\\
+    n \equiv 87 \pmod{367}\\
     n \equiv 4 \pmod{373}
 \end{aligned}
 $$
