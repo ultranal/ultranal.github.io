@@ -435,7 +435,9 @@ flag*r的值可以通过openssl rsautil解密获得。
                         logger.debug('found char %s(%.2x) in ret for %s(%.2x) at No. %d' % (ans, ord(ans), fuzzingchar, ord(fuzzingchar), p))
                 # raw_input()
             print slength, ''.join(a)
-                    
+
+> flag{Something Just Like This}
+
 ### TNT
 压缩包层数实在太多……
 
@@ -502,8 +504,8 @@ flag*r的值可以通过openssl rsautil解密获得。
 这里的奇异局势比较复杂。记石子堆分别为A，B，归纳法分析奇异局势的状况可以发现，石子堆A的数量符合黄金分割的增长规律。换言之，奇异局势数列符合如下通项公式：
 
 $$\begin{aligned}
-a_k = \lfloor \frac{k * (1 + \sqrt{5})}{2} \rfloor \\
-b_k = a_k + k
+a_k &= \lfloor \frac{k * (1 + \sqrt{5})}{2} \rfloor \\
+b_k &= a_k + k
 \end{aligned}$$
 
 解法么。。。也是穷举，穷举达到奇异局势的方案，但是由于局面复杂多样，这里的解法要复杂一些。可以参考ACM题HDU 2177的解法。
