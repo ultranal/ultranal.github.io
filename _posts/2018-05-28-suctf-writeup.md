@@ -89,9 +89,8 @@ $$\begin{aligned}\
 \end{aligned}
 $$
 
-有解，当且仅当其所有模数
-\\(m_1, m_2, \ldotsm_n\\)互质；
-2. 记M<sub>i</sub>为m<sub>i</sub>以外所有模数的乘积，t<sub>i</sub>为M<sub>i</sub>的模逆元，则S的解符合以下公式：
+有解，当且仅当其所有模数\\(m_1, m_2, \ldots m_n\\)互质；
+2. 记\\(M_i\\)为\\(m_i\\)以外所有模数的乘积，\\(t_i\\)为\\(M_i\\)的模逆元，则S的解符合以下公式：
 
 $$
 \begin{aligned}
