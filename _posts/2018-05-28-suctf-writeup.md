@@ -57,7 +57,7 @@ sand.txt
 
 $$
 \begin{aligned}
-(\mathbf{S}) : \quad \left{
+(\mathbf{S}) : \quad \left\{
 \begin{matrix}
     n \equiv 222 \pmod{257}\\
     n \equiv 203 \pmod{263}\\
