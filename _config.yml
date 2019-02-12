@@ -2,7 +2,7 @@
 title: Aspen Blog 
 # subtitle: A blog-orientation theme for Jekyll
 # welcome_message: <a href="https://github.com/onevcat/vno-jekyll" target="_blank">Download the theme</a>
-description: chAngE<br /> <img src="//ipv6.he.net/certification/create_badge.php?pass_name=ultranal&amp;badge=1" style="border: 0; width: 128px; height: 128px" alt="IPv6 Certification Badge for ultranal"></img>
+description: chAngE
 creator: <a href="http://blog.lpnal.me">@asp3n</a>
 url: "http://blog.lpnal.me"
 permalink: /:year/:month/:title/
