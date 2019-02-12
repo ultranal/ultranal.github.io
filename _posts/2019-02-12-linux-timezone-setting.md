@@ -5,7 +5,7 @@ date: 2019-02-12 17:11:48.698489060 +08:00
 tags: linux
 ---
 
-配置Linux的过程中，调整时区设置通常是比较重要的一项。参考了[这个](https://unix.stackexchange.com/questions/110522/timezone-setting-in-linux)和[这个](https://unix.stackexchange.com/questions/452559/what-is-etc-timezone-used-for)回答，粗略的记录一下时区的设置。
+配置 Linux 的过程中，调整时区设置通常是比较重要的一项。参考了[这个](https://unix.stackexchange.com/questions/110522/timezone-setting-in-linux)和[这个](https://unix.stackexchange.com/questions/452559/what-is-etc-timezone-used-for)回答，粗略的记录一下时区的设置。
 
 ## 时区配置的位置
 
@@ -18,12 +18,12 @@ tags: linux
 
 ## 调整时区配置
 
-推荐的方法是使用timedatectl命令：
+推荐的方法是使用`timedatectl`命令：
 ```
 # timedatectl set-timezone "Asia/Shanghai"
 ```
 
-不带参数的timedatectl命令则可以查看当前时区设置：
+不带参数的`timedatectl`命令则可以查看当前时区设置：
 ```
 $ timedatectl (timedatectl status也可)
                       Local time: Tue 2019-02-12 17:31:11 CST
@@ -40,7 +40,7 @@ systemd-timesyncd.service active: yes
 ```
 $ timedatectl list-timezones
 ```
-当然也可用tzselect：
+当然也可用`tzselect`：
 ```
 $ tzselect
 ```
