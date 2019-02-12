@@ -5,7 +5,7 @@ date: 2019-02-12 17:11:48.698489060 +08:00
 tags: linux
 ---
 
-配置Linux的过程中，调整时区设置通常是比较重要的一项。参考了[这个][https://unix.stackexchange.com/questions/110522/timezone-setting-in-linux]和[这个][https://unix.stackexchange.com/questions/452559/what-is-etc-timezone-used-for]回答，粗略的记录一下时区的设置。
+配置Linux的过程中，调整时区设置通常是比较重要的一项。参考了[这个](https://unix.stackexchange.com/questions/110522/timezone-setting-in-linux)和[这个](https://unix.stackexchange.com/questions/452559/what-is-etc-timezone-used-for)回答，粗略的记录一下时区的设置。
 
 ## 时区配置的位置
 
