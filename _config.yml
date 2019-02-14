@@ -3,8 +3,8 @@ title: Aspen Blog
 # subtitle: A blog-orientation theme for Jekyll
 # welcome_message: <a href="https://github.com/onevcat/vno-jekyll" target="_blank">Download the theme</a>
 description: chAngE
-creator: <a href="http://blog.lpnal.me">@asp3n</a>
-url: "http://blog.lpnal.me"
+creator: <a href="http://blog.lpnal.top">@asp3n</a>
+url: "http://blog.lpnal.top"
 permalink: /:year/:month/:title/
 
 # Format
@@ -40,7 +40,7 @@ social:
     github: ultranal
     # twitter: ultranal
     # gplus: 107108267983477358170
-    mail: ultranal@gmail.com
+    mail: ultranal@gmail.ccnom
 
 # Google Analytics
 ga:
