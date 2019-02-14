@@ -19,13 +19,13 @@ $ pip3 install virtualenvwrapper
 ```
 
 virtualenvwrapper 依赖于环境变量 `WORKON_HOME` 来配置虚拟环境的所在目录，同时用户需要加载 `/usr/local/bin/virtualenvwrapper.sh` 来初始化环境。在 `~/.*shrc` 中新增两行：
-```
+```bash
 export WORKON_HOME='~/.virtualenvs'
 source /usr/local/bin/virtualenvwrapper.sh
 ```
 
 另外，对于同时使用 Python 2 和 Python 3 的用户，最好是显式地规定使用的 Python 环境：
-```
+```bash
 export VIRTUALENVWRAPPER_PYTHON='/usr/local/bin/python3'
 ```
 
