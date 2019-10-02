@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Another independent blog written by a CTFer."><title>2019 ciscn writeup | Aspen Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.3.1/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-42440632-2','auto');ga('send','pageview');
+</script></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">2019 ciscn writeup</h1><a id="logo" href="/.">Aspen Blog</a><p class="description">Memories &amp; Technologies</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">2019 ciscn writeup</h1><div class="post-meta">Apr 24, 2019<span> | </span><span class="category"><a href="/categories/writeup/">writeup</a></span><span class="post-time"><span class="post-meta-item-text"> | </span><span class="post-meta-item-icon"><i class="fa fa-keyboard-o"></i><span class="post-count"> 806</span><span class="post-meta-item-text"> 字</span></span></span><span class="post-time"> | <span class="post-meta-item-icon"><i class="fa fa-hourglass-half"></i><span class="post-count"> 3</span><span class="post-meta-item-text"> 分钟</span></span></span></div><a class="disqus-comment-count" data-disqus-identifier="2019/04/24/ciscn-2019-writeup/" href="/2019/04/24/ciscn-2019-writeup/#disqus_thread"></a><div class="post-content"><p><del>2019年全国大学生信息安全py大赛</del></p>
+<p><del>论如何用十分钟写好writeup</del></p>
+<p>惯例：<a href="https://www.zhihu.com/question/321240506" target="_blank" rel="noopener">知乎传送门</a></p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="saleae"><a href="#saleae" class="headerlink" title="saleae"></a>saleae</h2><p>saleae logic 逻辑分析仪的记录数据。</p>
+<p>四通道基本是 SPI 无误，通道 1 很明显是时钟信号。</p>
+<p>选好对应信道，解码，直接看见flag。</p>
+<h2 id="24c"><a href="#24c" class="headerlink" title="24c"></a>24c</h2><p>参考题目名，记录的是通过 iic 烧写 24cxx eeprom 时逻辑分析仪抓取的数据。</p>
+<p>参考<a href="https://www.jianshu.com/p/aa4e559be337" target="_blank" rel="noopener">这篇文章</a>，分析 iic 烧写 24cxx 的指令。</p>
+<p>注意最后，在地址 8 处写入了两个字节，也就是要替换 flag 的第 8~9 位。</p>
+<h2 id="usbasp"><a href="#usbasp" class="headerlink" title="usbasp"></a>usbasp</h2><p>题目名称再次提示来源，是 usbasp 烧写 Atmel AVR 芯片时抓取的数据。Atmel AVR 实际上就是 Arduino 上很常见的 8 位主控芯片。</p>
+<p>参考<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2545-8-bit-AVR-Microcontroller-ATmega48-88-168_Datasheet.pdf" target="_blank" rel="noopener">ATmega48手册</a>可以分析烧录过程，提取烧录的固件。当然提取出来还需要逆向分析，似乎 IDA 对 AVR 的汇编支持不是很好。</p>
+<p>注意这题有个非预期解，直接把 SPI SS 信道置为高位有效就可以直接看 flag。</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="part-des"><a href="#part-des" class="headerlink" title="part_des"></a>part_des</h2><p>把未加密完成的 DES 解密。</p>
+<p>keymap 对应 DES 的子密钥表，round n part_encode 对应加密了一半的数据。</p>
+<p>任意 Google 一个 DES 实现， 把 keymap 灌进去，穷举一下 n 的大小看何时能够解密出明文即可。</p>
+<h2 id="warmup"><a href="#warmup" class="headerlink" title="warmup"></a>warmup</h2><p>不知道解法是不是预期解。</p>
+<p>这题多试一部分明文可以发现几个规律：</p>
+<ol>
+<li>密文到明文的映射有规律，只有 16 种有限映射，而且是一对一映射。</li>
+<li>同样的位置，加密方式不因明文改变而改变。</li>
+</ol>
+<p>映射一共是 16 种：</p>
+<ul>
+<li>0123456789abcdef </li>
+<li>fedcba9876543210</li>
+<li>89abcdef01234567</li>
+<li>76543210fedcba98</li>
+<li>45670123cdef89ab</li>
+<li>ba98fedc32107654</li>
+<li>cdef89ab45670123</li>
+<li>32107654ba98fedc</li>
+<li>23016745ab89efcd</li>
+<li>dcfe98ba54761032</li>
+<li>ab89efcd23016745</li>
+<li>54761032dcfe98ba</li>
+<li>67452301efcdab89</li>
+<li>98badcfe10325476</li>
+<li>efcdab8967452301</li>
+<li>1032547698badcfe </li>
+</ul>
+<p>由于是一对一映射，任意尝试一个字符，这个位对应哪一种映射就很明显了。</p>
+<p>具体解法上，先构造一个空的输入获取明文：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.sendline(<span class="string">''</span>)</span><br><span class="line">r.recvuntil(<span class="string">'urn&gt;'</span>) </span><br><span class="line">cipher = r.readline()</span><br></pre></td></tr></table></figure>
+<p>再构造一个足够长的明文，摸清每一位的映射关系： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r.sendline(<span class="string">'\x00'</span>*<span class="number">100</span>)</span><br><span class="line">r.recvuntil(<span class="string">'urn&gt;'</span>) </span><br><span class="line">keymap = r.readline()</span><br></pre></td></tr></table></figure>
+<p>接着只要：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p = &#123;<span class="string">'0'</span>: <span class="string">'0123456789abcdef'</span>,<span class="string">'f'</span>: <span class="string">'fedcba9876543210'</span>,<span class="string">'8'</span>: <span class="string">'89abcdef01234567'</span>,<span class="string">'7'</span>: <span class="string">'76543210fedcba98'</span>,<span class="string">'4'</span>: <span class="string">'45670123cdef89ab'</span>,<span class="string">'b'</span>: <span class="string">'ba98fedc32107654'</span>,<span class="string">'c'</span>: <span class="string">'cdef89ab45670123'</span>,<span class="string">'3'</span>: <span class="string">'32107654ba98fedc'</span>,<span class="string">'2'</span>: <span class="string">'23016745ab89efcd'</span>,<span class="string">'d'</span>: <span class="string">'dcfe98ba54761032'</span>,<span class="string">'a'</span>: <span class="string">'ab89efcd23016745'</span>,<span class="string">'5'</span>: <span class="string">'54761032dcfe98ba'</span>,<span class="string">'6'</span>: <span class="string">'67452301efcdab89'</span>,<span class="string">'9'</span>: <span class="string">'98badcfe10325476'</span>,<span class="string">'e'</span>: <span class="string">'efcdab8967452301'</span>,<span class="string">'1'</span>: <span class="string">'1032547698badcfe'</span>&#125; </span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">cipher = <span class="string">"ab853ec142689e803f46a9009a027ef6d0cede5ab36a2eea9992fd551f42416165dd4ce1fb5443df73be956ff9ce7308"</span> <span class="comment"># 读取来的 cipher 和 keymap</span></span><br><span class="line">keymap = <span class="string">"cde95fa63951aeb60c279b36ad2f4cc3b1abf36e860b1dc7a0f1cb303274730255b82ed09f3671ba4ac39369ffc8750e03cf"</span> </span><br><span class="line"> </span><br><span class="line">ans = <span class="string">""</span> </span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(cipher)):</span><br><span class="line">    ans += p[keymap[i]][int(cipher[i], <span class="number">16</span>)]</span><br><span class="line">    <span class="keyword">print</span> ans.decode(<span class="string">'hex'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Asymmetric"><a href="#Asymmetric" class="headerlink" title="Asymmetric"></a>Asymmetric</h2><p>用 $p^r$ 作为 $N$，以及和　$(s-1)P^r$ 互质的 $e$ 的公钥加密。</p>
+<p>解密实质上是求 $d$ 使<br>$$ed \equiv 1 \pmod{\varphi}$$</p>
+<p>注意到，这个 $N$ 是易于分解的，$N = p^4$, $r = 4$</p>
+<p>又，根据欧拉定理：<br>$$ \varphi(p^r) = p^r - p^{r-1} = (p - 1)p^r $$<br>则有 $ \varphi = (p - 1)p^3 $，据此利用 extended eucild 算出 $d$</p>
+<p>再依据 $ m \equiv c^d \pmod{N} $，解得 $m$，解码即为flag。</p>
+<h1 id="RE"><a href="#RE" class="headerlink" title="RE"></a>RE</h1><h2 id="easyGo"><a href="#easyGo" class="headerlink" title="easyGo"></a>easyGo</h2><p>去除符号表的 golang elf.</p>
+<p>参考：</p>
+<ol>
+<li><a href="https://www.freebuf.com/articles/others-articles/176803.html" target="_blank" rel="noopener">https://www.freebuf.com/articles/others-articles/176803.html</a> </li>
+<li><a href="https://github.com/strazzere/golang_loader_assist" target="_blank" rel="noopener">https://github.com/strazzere/golang_loader_assist</a> </li>
+<li><a href="https://bbs.pediy.com/thread-229574.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-229574.htm</a> </li>
+</ol>
+<p>利用 2 提供的 IDA 脚本分析符号表（参考 3 修复 IDA bug），定位到 main_main。在解析函数前下一个断点，直接获得 flag。</p>
+<h1 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h1><h2 id="baby-pwn"><a href="#baby-pwn" class="headerlink" title="baby_pwn"></a>baby_pwn</h2><p>ret2dl_resolve. 直接套用 roputils 提供的样例。</p>
+<h2 id="your-pwn"><a href="#your-pwn" class="headerlink" title="your_pwn"></a>your_pwn</h2><p>数组下标溢出。需要 leak 一下 libc 基址。</p>
+<h2 id="daily"><a href="#daily" class="headerlink" title="daily"></a>daily</h2><p>leak heap_base&amp;libc 基址后，利用 double free 漏洞。</p>
+</div><div class="tags"><a href="/tags/ciscn/">ciscn</a></div><div class="post-nav"><a class="next" href="/2019/04/02/noip-2017-puji/">某测试程序阅读题详解</a></div><div class="post-ad"><script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8173953423049587" data-ad-slot="3190220378" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'https://blog.lpnal.me/2019/04/24/ciscn-2019-writeup/';
+    this.page.identifier = '2019/04/24/ciscn-2019-writeup/';
+    this.page.title = '2019 ciscn writeup';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//blog-lpnal.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//blog-lpnal.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://blog-lpnal.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="https://blog.lpnal.me"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs/">cs</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/writeup/">writeup</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/gctf/" style="font-size: 15px;">gctf</a> <a href="/tags/eail/" style="font-size: 15px;">eail</a> <a href="/tags/ciscn/" style="font-size: 15px;">ciscn</a> <a href="/tags/timezone/" style="font-size: 15px;">timezone</a> <a href="/tags/virtualenv/" style="font-size: 15px;">virtualenv</a> <a href="/tags/vscode/" style="font-size: 15px;">vscode</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/travis/" style="font-size: 15px;">travis</a> <a href="/tags/csrg/" style="font-size: 15px;">csrg</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/jekyll/" style="font-size: 15px;">jekyll</a> <a href="/tags/suctf/" style="font-size: 15px;">suctf</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/04/24/ciscn-2019-writeup/">2019 ciscn writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/02/noip-2017-puji/">某测试程序阅读题详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/23/git-submodule/">Git 子模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/14/porting-to-hexo/">从 GitHub Pages 迁移到 Hexo：Hexo + Travis CI + VPS + GPages，双镜像站点侧记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/13/venvwrapper-and-vscode/">virtualenvwrapper 配合 Visual Studio Code 使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/02/12/linux-timezone-setting/">调整 Linux 时区设置</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/27/suctf-writeup/">SUCTF 2018 Write-up</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/27/ciscn-prelim-wp/">CISCN 2018 初赛 Write-up</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/25/an-introduction-to-cs/">计算机科学知识体系系列 - 导论</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/12/gctf-2017-write-up/">GCTF 2017 Write-up</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> 最近评论</i></div><script type="text/javascript" src="//blog-lpnal.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://ctf.lpnal.top/" title="ForestCTF" target="_blank">ForestCTF</a></div><div class="widget"><script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" async="async"></script><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8173953423049587" data-ad-slot="4758934440" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">Aspen Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a><br><a rel="nofollow" target="_blank" href="http://www.miitbeian.gov.cn">苏ICP备17036487号-1</a> |
+ <img class="nofancybox" src="/img/beian.png" style="margin-bottom: -4px;"><a rel="nofollow" target="_blank" href="http://www.beian.gov.cn">苏公网安备 32011302320688号</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.2/jquery.fancybox.min.css"><script type="text/x-mathjax-config">MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script><script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML" async></script><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
