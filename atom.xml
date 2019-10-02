@@ -5,9 +5,9 @@
   <subtitle>Memories &amp; Technologies</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://blog.lpnal.me/"/>
-  <updated>2019-10-02T06:43:37.046Z</updated>
-  <id>https://blog.lpnal.me/</id>
+  <link href="https://lpnal.me/"/>
+  <updated>2019-10-02T07:17:01.703Z</updated>
+  <id>https://lpnal.me/</id>
   
   <author>
     <name>ultranal</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>2019 ciscn writeup</title>
-    <link href="https://blog.lpnal.me/2019/04/24/ciscn-2019-writeup/"/>
-    <id>https://blog.lpnal.me/2019/04/24/ciscn-2019-writeup/</id>
+    <link href="https://lpnal.me/2019/04/24/ciscn-2019-writeup/"/>
+    <id>https://lpnal.me/2019/04/24/ciscn-2019-writeup/</id>
     <published>2019-04-24T03:29:24.000Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.703Z</updated>
     
     <summary type="html">
     
@@ -36,19 +36,19 @@
     </summary>
     
     
-      <category term="writeup" scheme="https://blog.lpnal.me/categories/writeup/"/>
+      <category term="writeup" scheme="https://lpnal.me/categories/writeup/"/>
     
     
-      <category term="ciscn" scheme="https://blog.lpnal.me/tags/ciscn/"/>
+      <category term="ciscn" scheme="https://lpnal.me/tags/ciscn/"/>
     
   </entry>
   
   <entry>
     <title>某测试程序阅读题详解</title>
-    <link href="https://blog.lpnal.me/2019/04/02/noip-2017-puji/"/>
-    <id>https://blog.lpnal.me/2019/04/02/noip-2017-puji/</id>
+    <link href="https://lpnal.me/2019/04/02/noip-2017-puji/"/>
+    <id>https://lpnal.me/2019/04/02/noip-2017-puji/</id>
     <published>2019-04-02T07:42:16.341Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.703Z</updated>
     
     <summary type="html">
     
@@ -63,19 +63,19 @@
     </summary>
     
     
-      <category term="writeup" scheme="https://blog.lpnal.me/categories/writeup/"/>
+      <category term="writeup" scheme="https://lpnal.me/categories/writeup/"/>
     
     
-      <category term="csrg" scheme="https://blog.lpnal.me/tags/csrg/"/>
+      <category term="csrg" scheme="https://lpnal.me/tags/csrg/"/>
     
   </entry>
   
   <entry>
     <title>Git 子模块</title>
-    <link href="https://blog.lpnal.me/2019/02/23/git-submodule/"/>
-    <id>https://blog.lpnal.me/2019/02/23/git-submodule/</id>
+    <link href="https://lpnal.me/2019/02/23/git-submodule/"/>
+    <id>https://lpnal.me/2019/02/23/git-submodule/</id>
     <published>2019-02-23T15:07:27.000Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.703Z</updated>
     
     <summary type="html">
     
@@ -90,21 +90,21 @@
     </summary>
     
     
-      <category term="git" scheme="https://blog.lpnal.me/categories/git/"/>
+      <category term="git" scheme="https://lpnal.me/categories/git/"/>
     
     
-      <category term="git" scheme="https://blog.lpnal.me/tags/git/"/>
+      <category term="git" scheme="https://lpnal.me/tags/git/"/>
     
-      <category term="travis" scheme="https://blog.lpnal.me/tags/travis/"/>
+      <category term="travis" scheme="https://lpnal.me/tags/travis/"/>
     
   </entry>
   
   <entry>
     <title>从 GitHub Pages 迁移到 Hexo：Hexo + Travis CI + VPS + GPages，双镜像站点侧记</title>
-    <link href="https://blog.lpnal.me/2019/02/14/porting-to-hexo/"/>
-    <id>https://blog.lpnal.me/2019/02/14/porting-to-hexo/</id>
+    <link href="https://lpnal.me/2019/02/14/porting-to-hexo/"/>
+    <id>https://lpnal.me/2019/02/14/porting-to-hexo/</id>
     <published>2019-02-14T19:31:25.366Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.703Z</updated>
     
     <summary type="html">
     
@@ -119,23 +119,23 @@
     </summary>
     
     
-      <category term="blog" scheme="https://blog.lpnal.me/categories/blog/"/>
+      <category term="blog" scheme="https://lpnal.me/categories/blog/"/>
     
     
-      <category term="travis" scheme="https://blog.lpnal.me/tags/travis/"/>
+      <category term="travis" scheme="https://lpnal.me/tags/travis/"/>
     
-      <category term="hexo" scheme="https://blog.lpnal.me/tags/hexo/"/>
+      <category term="hexo" scheme="https://lpnal.me/tags/hexo/"/>
     
-      <category term="jekyll" scheme="https://blog.lpnal.me/tags/jekyll/"/>
+      <category term="jekyll" scheme="https://lpnal.me/tags/jekyll/"/>
     
   </entry>
   
   <entry>
     <title>virtualenvwrapper 配合 Visual Studio Code 使用</title>
-    <link href="https://blog.lpnal.me/2019/02/13/venvwrapper-and-vscode/"/>
-    <id>https://blog.lpnal.me/2019/02/13/venvwrapper-and-vscode/</id>
+    <link href="https://lpnal.me/2019/02/13/venvwrapper-and-vscode/"/>
+    <id>https://lpnal.me/2019/02/13/venvwrapper-and-vscode/</id>
     <published>2019-02-13T06:12:28.323Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.703Z</updated>
     
     <summary type="html">
     
@@ -150,21 +150,21 @@
     </summary>
     
     
-      <category term="python" scheme="https://blog.lpnal.me/categories/python/"/>
+      <category term="python" scheme="https://lpnal.me/categories/python/"/>
     
     
-      <category term="virtualenv" scheme="https://blog.lpnal.me/tags/virtualenv/"/>
+      <category term="virtualenv" scheme="https://lpnal.me/tags/virtualenv/"/>
     
-      <category term="vscode" scheme="https://blog.lpnal.me/tags/vscode/"/>
+      <category term="vscode" scheme="https://lpnal.me/tags/vscode/"/>
     
   </entry>
   
   <entry>
     <title>调整 Linux 时区设置</title>
-    <link href="https://blog.lpnal.me/2019/02/12/linux-timezone-setting/"/>
-    <id>https://blog.lpnal.me/2019/02/12/linux-timezone-setting/</id>
+    <link href="https://lpnal.me/2019/02/12/linux-timezone-setting/"/>
+    <id>https://lpnal.me/2019/02/12/linux-timezone-setting/</id>
     <published>2019-02-12T01:11:48.698Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.703Z</updated>
     
     <summary type="html">
     
@@ -179,19 +179,19 @@
     </summary>
     
     
-      <category term="linux" scheme="https://blog.lpnal.me/categories/linux/"/>
+      <category term="linux" scheme="https://lpnal.me/categories/linux/"/>
     
     
-      <category term="timezone" scheme="https://blog.lpnal.me/tags/timezone/"/>
+      <category term="timezone" scheme="https://lpnal.me/tags/timezone/"/>
     
   </entry>
   
   <entry>
     <title>SUCTF 2018 Write-up</title>
-    <link href="https://blog.lpnal.me/2018/05/27/suctf-writeup/"/>
-    <id>https://blog.lpnal.me/2018/05/27/suctf-writeup/</id>
+    <link href="https://lpnal.me/2018/05/27/suctf-writeup/"/>
+    <id>https://lpnal.me/2018/05/27/suctf-writeup/</id>
     <published>2018-05-27T23:28:53.000Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.703Z</updated>
     
     <summary type="html">
     
@@ -206,19 +206,19 @@
     </summary>
     
     
-      <category term="writeup" scheme="https://blog.lpnal.me/categories/writeup/"/>
+      <category term="writeup" scheme="https://lpnal.me/categories/writeup/"/>
     
     
-      <category term="suctf" scheme="https://blog.lpnal.me/tags/suctf/"/>
+      <category term="suctf" scheme="https://lpnal.me/tags/suctf/"/>
     
   </entry>
   
   <entry>
     <title>CISCN 2018 初赛 Write-up</title>
-    <link href="https://blog.lpnal.me/2018/05/27/ciscn-prelim-wp/"/>
-    <id>https://blog.lpnal.me/2018/05/27/ciscn-prelim-wp/</id>
+    <link href="https://lpnal.me/2018/05/27/ciscn-prelim-wp/"/>
+    <id>https://lpnal.me/2018/05/27/ciscn-prelim-wp/</id>
     <published>2018-05-27T23:25:24.000Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.699Z</updated>
     
     <summary type="html">
     
@@ -233,19 +233,19 @@
     </summary>
     
     
-      <category term="writeup" scheme="https://blog.lpnal.me/categories/writeup/"/>
+      <category term="writeup" scheme="https://lpnal.me/categories/writeup/"/>
     
     
-      <category term="ciscn" scheme="https://blog.lpnal.me/tags/ciscn/"/>
+      <category term="ciscn" scheme="https://lpnal.me/tags/ciscn/"/>
     
   </entry>
   
   <entry>
     <title>计算机科学知识体系系列 - 导论</title>
-    <link href="https://blog.lpnal.me/2018/01/25/an-introduction-to-cs/"/>
-    <id>https://blog.lpnal.me/2018/01/25/an-introduction-to-cs/</id>
+    <link href="https://lpnal.me/2018/01/25/an-introduction-to-cs/"/>
+    <id>https://lpnal.me/2018/01/25/an-introduction-to-cs/</id>
     <published>2018-01-25T21:17:08.000Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.699Z</updated>
     
     <summary type="html">
     
@@ -260,19 +260,19 @@
     </summary>
     
     
-      <category term="cs" scheme="https://blog.lpnal.me/categories/cs/"/>
+      <category term="cs" scheme="https://lpnal.me/categories/cs/"/>
     
     
-      <category term="eail" scheme="https://blog.lpnal.me/tags/eail/"/>
+      <category term="eail" scheme="https://lpnal.me/tags/eail/"/>
     
   </entry>
   
   <entry>
     <title>GCTF 2017 Write-up</title>
-    <link href="https://blog.lpnal.me/2017/06/12/gctf-2017-write-up/"/>
-    <id>https://blog.lpnal.me/2017/06/12/gctf-2017-write-up/</id>
+    <link href="https://lpnal.me/2017/06/12/gctf-2017-write-up/"/>
+    <id>https://lpnal.me/2017/06/12/gctf-2017-write-up/</id>
     <published>2017-06-12T01:32:24.000Z</published>
-    <updated>2019-10-02T06:43:37.046Z</updated>
+    <updated>2019-10-02T07:17:01.699Z</updated>
     
     <summary type="html">
     
@@ -287,10 +287,10 @@
     </summary>
     
     
-      <category term="writeup" scheme="https://blog.lpnal.me/categories/writeup/"/>
+      <category term="writeup" scheme="https://lpnal.me/categories/writeup/"/>
     
     
-      <category term="gctf" scheme="https://blog.lpnal.me/tags/gctf/"/>
+      <category term="gctf" scheme="https://lpnal.me/tags/gctf/"/>
     
   </entry>
   
